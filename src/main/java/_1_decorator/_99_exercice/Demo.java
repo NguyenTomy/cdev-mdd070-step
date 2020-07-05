@@ -8,10 +8,15 @@ public class Demo {
 
         FileDataSource fileDataSource = new FileDataSource("OutputDemo.txt");
 
+        DataSourceDecorator dataSourceDecorator = new DataSourceDecorator(fileDataSource);
+        dataSourceDecorator.writeData(salaryRecords);
         Encryptor encryptor = new Encryptor();
         Compressor compressor = new Compressor();
         String encrypted = encryptor.encode(salaryRecords);
         String encryptedAndCompressed = compressor.compress(encrypted);
+
+        compressor.writeData(salaryRecords);
+
         fileDataSource.writeData(encryptedAndCompressed);
 
         //TODO refactoriser en utilisant le pattern decorator

@@ -32,6 +32,17 @@ public class ArrayMaList implements MaList {
     @Override
     public void add(int position, String valeur) {
         // TODO
+            String[] newTab = new String[this.array.length];
+            for(int i = 0; i < position; i++) {
+
+                newTab[i] = this.array[i];
+            }
+            newTab[position] = valeur;
+            for(int i = position + 1; i < this.array.length; i++)  {
+
+                newTab[i] = this.array[i - 1];
+            }
+            this.array = newTab;
     }
 
     @Override
@@ -42,6 +53,6 @@ public class ArrayMaList implements MaList {
     @Override
     public Iterator<String> iterator() {
         // TODO
-        return null;
+        return new listIterator(this);
     }
 }
